@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Donate Food</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+
+            background:#081229;
+
+            font-family:Arial;
+
+            color:white;
+
+            margin:0;
+        }
+
+        .donate-box{
+
+            width:420px;
+
+            margin:60px auto;
+
+            background:rgba(255,255,255,0.08);
+
+            padding:40px;
+
+            border-radius:25px;
+
+            backdrop-filter:blur(10px);
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            box-shadow:0 0 20px #39FF14;
+        }
+
+        h1{
+
+            text-align:center;
+
+            color:#39FF14;
+
+            margin-bottom:30px;
+
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+        }
+
+        label{
+
+            display:block;
+
+            margin-top:18px;
+
+            margin-bottom:8px;
+
+            color:#39FF14;
+
+            font-size:17px;
+
+            font-weight:bold;
+        }
+
+        input, select{
+
+            width:100%;
+
+            padding:14px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#111827;
+
+            color:white;
+
+            font-size:15px;
+
+            outline:none;
+
+            box-sizing:border-box;
+
+            border:1px solid #39FF14;
+        }
+
+        input:focus,
+        select:focus{
+
+            box-shadow:0 0 15px #39FF14;
+        }
+
+        #deliveryFee{
+
+            margin-top:15px;
+
+            text-align:center;
+
+            color:#39FF14;
+
+            font-size:20px;
+
+            font-weight:bold;
+        }
+
+        #vehicleNote{
+
+            text-align:center;
+
+            color:#ccc;
+
+            font-size:14px;
+        }
+
+        button{
+
+            width:100%;
+
+            margin-top:30px;
+
+            padding:15px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:linear-gradient(to right,#39FF14,#00E5FF);
+
+            color:black;
+
+            font-size:18px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:0 0 15px #39FF14;
+        }
+
+        button:hover{
+
+            transform:scale(1.03);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #00E5FF;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="donate-box">
+
+        <h1>Donate Food 🍱</h1>
+
+        <form method="POST">
+
+            <!-- FOOD NAME -->
+
+            <label>Food Name</label>
+
+            <input 
+                type="text"
+                name="food"
+                placeholder="Enter food name"
+                required
+            >
+
+            <!-- QUANTITY -->
+
+            <label>Quantity</label>
+
+            <input 
+                type="text"
+                name="quantity"
+                placeholder="Enter quantity"
+                required
+            >
+
+            <!-- PEOPLE -->
+
+            <label>Serves People</label>
+
+            <input 
+                type="number"
+                name="people"
+                placeholder="How many people can eat?"
+                required
+            >
+
+            <!-- DISTANCE -->
+
+            <label>Distance (in KM)</label>
+
+            <input 
+                type="number"
+                name="distance"
+                id="distance"
+                placeholder="Enter distance"
+                required
+            >
+
+            <!-- LOCATION -->
+
+            <label>Location</label>
+
+            <input 
+                type="text"
+                name="location"
+                placeholder="Enter pickup location"
+                required
+            >
+
+            <!-- VEHICLE -->
+
+            <label>Select Vehicle</label>
+
+            <select name="vehicle" id="vehicle">
+
+                <option value="bike">🛵 2 Wheeler</option>
+
+                <option value="auto">🛺 Auto</option>
+
+                <option value="tempo">🚐 Tempo</option>
+
+            </select>
+
+            <!-- DELIVERY FEE -->
+
+            <p id="deliveryFee">
+
+                Delivery Fee: ₹0
+
+            </p>
+
+            <p id="vehicleNote">
+
+                Charges are calculated based on distance & vehicle type
+
+            </p>
+
+            <!-- SUBMIT -->
+
+            <button type="submit">
+
+                Donate Food
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const vehicle = document.getElementById("vehicle");
+
+        const distance = document.getElementById("distance");
+
+        const feeText = document.getElementById("deliveryFee");
+
+        function calculateFee(){
+
+            let rate = 0;
+
+            // VEHICLE RATE
+
+            if(vehicle.value == "bike"){
+
+                rate = 10;
+
+            }
+
+            else if(vehicle.value == "auto"){
+
+                rate = 20;
+
+            }
+
+            else if(vehicle.value == "tempo"){
+
+                rate = 30;
+
+            }
+
+            // DISTANCE
+
+            let km = parseInt(distance.value) || 0;
+
+            // TOTAL
+
+            let total = km * rate;
+
+            feeText.innerHTML = "Delivery Fee: ₹" + total;
+
+        }
+
+        // EVENTS
+
+        vehicle.addEventListener("change", calculateFee);
+
+        distance.addEventListener("input", calculateFee);
+
+        // INITIAL RUN
+
+        calculateFee();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In - Foodoraa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            font-family:Arial, sans-serif;
+
+            background:#0f172a;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            height:100vh;
+
+            color:white;
+        }
+
+        /* MAIN BOX */
+
+        .signin-box{
+
+            width:420px;
+
+            padding:40px;
+
+            border-radius:25px;
+
+            background:rgba(255,255,255,0.08);
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            backdrop-filter:blur(12px);
+
+            text-align:center;
+
+            box-shadow:
+            0 0 20px rgba(57,255,20,0.2);
+        }
+
+        .signin-box:hover{
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px rgba(57,255,20,0.4);
+        }
+
+        h1{
+
+            color:#39FF14;
+
+            margin-bottom:15px;
+
+            font-size:40px;
+
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+        }
+
+        p{
+
+            color:#d1d5db;
+
+            margin-bottom:30px;
+
+            font-size:17px;
+        }
+
+        /* OPTION BOX */
+
+        .option{
+
+            margin-top:20px;
+
+            padding:20px;
+
+            border-radius:18px;
+
+            background:#111827;
+
+            border:1px solid rgba(255,255,255,0.1);
+
+            transition:0.3s;
+        }
+
+        .option:hover{
+
+            transform:translateY(-5px);
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        .option h2{
+
+            color:#39FF14;
+
+            margin-bottom:10px;
+
+            text-shadow:
+            0 0 10px #39FF14;
+        }
+
+        .option p{
+
+            color:#9ca3af;
+
+            margin-bottom:15px;
+
+            font-size:15px;
+        }
+
+        /* BUTTON */
+
+        button{
+
+            width:90%;
+
+            padding:14px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:linear-gradient(to right,#39FF14,#00E5FF);
+
+            color:black;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        button:hover{
+
+            transform:scale(1.03);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #00E5FF;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="signin-box">
+
+        <h1>Foodoraa 🌿</h1>
+
+        <p>
+            Choose your sign in method
+        </p>
+
+        <!-- PHONE LOGIN -->
+
+        <div class="option">
+
+            <h2>📱 Continue with Phone Number</h2>
+
+            <p>
+                Login securely using OTP verification
+            </p>
+
+            <a href="/otp">
+
+                <button>
+                    Continue with Phone
+                </button>
+
+            </a>
+
+        </div>
+
+        <!-- GOOGLE LOGIN -->
+
+        <div class="option">
+
+            <h2>🔵 Continue with Google</h2>
+
+            <p>
+                Use your Gmail account to continue
+            </p>
+
+            <a href="/google">
+
+                <button>
+                    Continue with Google
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

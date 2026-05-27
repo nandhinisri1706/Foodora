@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Admin Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+
+            margin:0;
+
+            font-family:Arial;
+
+            background:#081229;
+
+            color:white;
+        }
+
+        .admin-box{
+
+            width:400px;
+
+            margin:100px auto;
+
+            padding:40px;
+
+            border-radius:25px;
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(10px);
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            box-shadow:
+            0 0 20px #39FF14;
+        }
+
+        h1{
+
+            text-align:center;
+
+            color:#39FF14;
+
+            margin-bottom:30px;
+
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+        }
+
+        label{
+
+            display:block;
+
+            margin-top:15px;
+
+            margin-bottom:8px;
+
+            color:#39FF14;
+
+            font-size:16px;
+
+            font-weight:bold;
+        }
+
+        input{
+
+            width:100%;
+
+            padding:14px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#111827;
+
+            color:white;
+
+            font-size:15px;
+
+            outline:none;
+
+            box-sizing:border-box;
+
+            border:1px solid #39FF14;
+        }
+
+        input:focus{
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        button{
+
+            width:100%;
+
+            margin-top:30px;
+
+            padding:15px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:linear-gradient(to right,#39FF14,#00E5FF);
+
+            color:black;
+
+            font-size:18px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        button:hover{
+
+            transform:scale(1.03);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #00E5FF;
+        }
+
+        .hint{
+
+            margin-top:20px;
+
+            text-align:center;
+
+            color:#9ca3af;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="admin-box">
+
+        <h1>Admin Login 🔐</h1>
+
+        <form method="POST">
+
+            <!-- PASSWORD -->
+
+            <label>Enter Admin Password</label>
+
+            <input 
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+            <!-- BUTTON -->
+
+            <button type="submit">
+
+                Login
+
+            </button>
+
+        </form>
+
+        <div class="hint">
+
+            Secure access for Foodoraa admin panel
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Foodoraa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        /* ================= BODY ================= */
+
+        body{
+
+            margin:0;
+            padding:0;
+
+            font-family:Arial, sans-serif;
+
+            background:linear-gradient(
+                180deg,
+                #020617,
+                #081229,
+                #0f172a
+            );
+
+            background-size:400% 400%;
+
+            animation:bgMove 8s ease infinite;
+
+            color:white;
+
+            overflow-x:hidden;
+        }
+
+        /* ================= BACKGROUND ANIMATION ================= */
+
+        @keyframes bgMove{
+
+            0%{
+                background-position:0% 0%;
+            }
+
+            50%{
+                background-position:0% 100%;
+            }
+
+            100%{
+                background-position:0% 0%;
+            }
+        }
+
+        /* ================= TOP BUTTONS ================= */
+
+        .top-buttons{
+
+            width:90%;
+
+            margin:auto;
+
+            display:flex;
+
+            justify-content:flex-end;
+
+            gap:15px;
+
+            padding-top:20px;
+        }
+
+        .auth-btn{
+
+            padding:12px 24px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:linear-gradient(to right,#39FF14,#00E5FF);
+
+            color:black;
+
+            font-size:15px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        .auth-btn:hover{
+
+            transform:scale(1.05);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #00E5FF;
+        }
+
+        .logout-btn{
+
+            background:linear-gradient(to right,#ff4d4d,#ff0000);
+
+            color:white;
+
+            box-shadow:
+            0 0 15px red;
+        }
+
+        .logout-btn:hover{
+
+            box-shadow:
+            0 0 20px red,
+            0 0 40px red;
+        }
+
+        /* ================= TITLE ================= */
+
+        h1{
+
+            text-align:center;
+
+            margin-top:20px;
+
+            font-size:70px;
+
+            color:#39FF14;
+
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14,
+            0 0 40px #39FF14;
+        }
+
+        /* ================= SUBTITLE ================= */
+
+        .subtitle{
+
+            text-align:center;
+
+            color:#d1d5db;
+
+            font-size:22px;
+
+            margin-top:-10px;
+
+            margin-bottom:40px;
+        }
+
+        /* ================= MAIN CONTAINER ================= */
+
+        .main-container{
+
+            width:90%;
+
+            margin:40px auto;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:flex-start;
+
+            gap:35px;
+
+            flex-wrap:wrap;
+        }
+
+        /* ================= CARD ================= */
+
+        .card{
+
+            width:280px;
+
+            padding:40px 25px;
+
+            border-radius:25px;
+
+            background:rgba(255,255,255,0.08);
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            backdrop-filter:blur(12px);
+
+            text-align:center;
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 15px rgba(57,255,20,0.2);
+        }
+
+        .card:hover{
+
+            transform:translateY(-8px);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px rgba(57,255,20,0.4);
+        }
+
+        /* ================= ADMIN CARD ================= */
+
+        .admin-card{
+
+            margin-top:30px;
+
+            width:100%;
+
+            max-width:320px;
+        }
+
+        /* ================= CARD TITLE ================= */
+
+        .card h2{
+
+            color:#39FF14;
+
+            font-size:38px;
+
+            margin-bottom:15px;
+
+            text-shadow:
+            0 0 10px #39FF14;
+        }
+
+        /* ================= CARD TEXT ================= */
+
+        .card p{
+
+            color:#d1d5db;
+
+            font-size:18px;
+
+            margin-bottom:25px;
+
+            line-height:1.6;
+        }
+
+        .card a{
+
+            text-decoration:none;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .card button{
+
+            padding:14px 28px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:linear-gradient(to right,#39FF14,#00E5FF);
+
+            color:black;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        .card button:hover{
+
+            transform:scale(1.05);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #00E5FF;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer{
+
+            width:100%;
+
+            position:fixed;
+
+            bottom:0;
+
+            left:0;
+
+            background:#111827;
+
+            display:flex;
+
+            justify-content:space-around;
+
+            padding:18px 0;
+
+            border-top:2px solid #39FF14;
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        .footer a{
+
+            color:#39FF14;
+
+            text-decoration:none;
+
+            font-size:20px;
+
+            font-weight:bold;
+
+            transition:0.3s;
+        }
+
+        .footer a:hover{
+
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:768px){
+
+            h1{
+
+                font-size:45px;
+            }
+
+            .subtitle{
+
+                font-size:18px;
+            }
+
+            .card{
+
+                width:90%;
+            }
+
+            .top-buttons{
+
+                justify-content:center;
+
+                flex-wrap:wrap;
+            }
+
+            .footer a{
+
+                font-size:15px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= TOP BUTTONS ================= -->
+
+    <div class="top-buttons">
+
+        <a href="/login">
+
+            <button class="auth-btn">
+
+                Login
+
+            </button>
+
+        </a>
+
+        <a href="/signin">
+
+            <button class="auth-btn">
+
+                Sign In
+
+            </button>
+
+        </a>
+
+        <a href="/logout">
+
+            <button class="auth-btn logout-btn">
+
+                Logout
+
+            </button>
+
+        </a>
+
+    </div>
+
+    <!-- ================= TITLE ================= -->
+
+    <h1>
+
+        Welcome to Foodoraa 🚀
+
+    </h1>
+
+    <div class="subtitle">
+
+        Smart Food Donation & Delivery Platform
+
+    </div>
+
+    <!-- ================= MAIN CARDS ================= -->
+
+    <div class="main-container">
+
+        <!-- VOLUNTEER -->
+
+        <div class="card">
+
+            <h2>
+
+                Volunteer 🚴
+
+            </h2>
+
+            <p>
+
+                Deliver food and earn money through real-time delivery tasks.
+
+            </p>
+
+            <a href="/volunteer">
+
+                <button>
+
+                    Open
+
+                </button>
+
+            </a>
+
+        </div>
+
+        <!-- DONATE -->
+
+        <div class="card">
+
+            <h2>
+
+                Donate 🍱
+
+            </h2>
+
+            <p>
+
+                Donate excess food easily and help reduce food waste.
+
+            </p>
+
+            <a href="/donate">
+
+                <button>
+
+                    Open
+
+                </button>
+
+            </a>
+
+        </div>
+
+        <!-- ADMIN -->
+
+        <div class="card admin-card">
+
+            <h2>
+
+                Admin 📊
+
+            </h2>
+
+            <p>
+
+                Manage donations, deliveries, savings and analytics.
+
+            </p>
+
+            <a href="/admin">
+
+                <button>
+
+                    Open
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="footer">
+
+        <a href="/">Home</a>
+
+        <a href="/about">About</a>
+
+        <a href="/savings">Savings</a>
+
+    </div>
+
+</body>
+
+</html>

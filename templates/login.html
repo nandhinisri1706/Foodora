@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to foodoraa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+
+            font-family:Arial, sans-serif;
+
+            background:#0f172a;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            height:100vh;
+
+            color:white;
+        }
+
+        /* LOGIN BOX */
+
+        .box{
+
+            width:380px;
+
+            padding:40px;
+
+            border-radius:25px;
+
+            background:rgba(255,255,255,0.08);
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            backdrop-filter:blur(12px);
+
+            text-align:center;
+
+            box-shadow:
+            0 0 20px rgba(57,255,20,0.2);
+        }
+
+        .box:hover{
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px rgba(57,255,20,0.4);
+        }
+
+        h2{
+
+            color:#39FF14;
+
+            font-size:40px;
+
+            margin-bottom:20px;
+
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+        }
+
+        /* INPUT */
+
+        input{
+
+            width:92%;
+
+            padding:14px;
+
+            margin-top:15px;
+
+            border-radius:12px;
+
+            border:1px solid #39FF14;
+
+            background:#111827;
+
+            color:white;
+
+            outline:none;
+
+            font-size:15px;
+        }
+
+        input:focus{
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        /* BUTTON */
+
+        button{
+
+            width:100%;
+
+            padding:14px;
+
+            margin-top:20px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:linear-gradient(to right,#39FF14,#00E5FF);
+
+            color:black;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        button:hover{
+
+            transform:scale(1.03);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #00E5FF;
+        }
+
+        /* LINKS */
+
+        a{
+
+            display:block;
+
+            margin-top:18px;
+
+            color:#39FF14;
+
+            text-decoration:none;
+
+            font-size:15px;
+        }
+
+        a:hover{
+
+            text-shadow:
+            0 0 10px #39FF14;
+        }
+
+        .icon{
+
+            font-size:55px;
+
+            margin-bottom:10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <div class="icon">
+            🔐
+        </div>
+
+        <h2>Login</h2>
+
+        <form method="POST">
+
+            <input
+            type="text"
+            name="username"
+            placeholder="Enter Username"
+            required>
+
+            <br>
+
+            <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required>
+
+            <br>
+
+            <button type="submit">
+                Login 🚀
+            </button>
+
+        </form>
+
+        <a href="/signup">
+            Create New Account ✨
+        </a>
+
+        <a href="/signin">
+            Continue with OTP / Google 🔵
+        </a>
+
+    </div>
+
+</body>
+</html>

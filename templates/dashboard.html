@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#0f172a;
+            margin:0;
+            color:white;
+        }
+
+        h1{
+            text-align:center;
+            color:#39FF14;
+            margin-top:25px;
+            font-size:45px;
+
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+            padding-bottom:50px;
+        }
+
+        /* CARD */
+
+        .card{
+
+            background:rgba(255,255,255,0.08);
+
+            padding:25px;
+
+            margin:25px auto;
+
+            border-radius:20px;
+
+            max-width:750px;
+
+            text-align:center;
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            backdrop-filter:blur(10px);
+
+            box-shadow:
+            0 0 20px rgba(57,255,20,0.2);
+
+            transition:0.3s;
+        }
+
+        .card:hover{
+
+            transform:translateY(-5px);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px rgba(57,255,20,0.4);
+        }
+
+        h2{
+            color:#39FF14;
+
+            text-shadow:
+            0 0 10px #39FF14;
+        }
+
+        .stat{
+            font-size:35px;
+            font-weight:bold;
+
+            color:#00E5FF;
+
+            text-shadow:
+            0 0 10px #00E5FF;
+        }
+
+        canvas{
+            margin-top:20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Admin Dashboard 📊</h1>
+
+    <div class="container">
+
+        <!-- TOTAL DONATIONS -->
+        <div class="card">
+
+            <h2>Total Donations</h2>
+
+            <p class="stat">{{ total }}</p>
+
+        </div>
+
+        <!-- BAR CHART -->
+        <div class="card">
+
+            <h2>Food Donation Analysis</h2>
+
+            <canvas id="barChart"></canvas>
+
+        </div>
+
+    </div>
+
+<script>
+
+    // SAFE DATA FROM FLASK
+    const labels = JSON.parse('{{ chart_labels | safe }}');
+    const values = JSON.parse('{{ chart_values | safe }}');
+
+    // BAR CHART
+    new Chart(document.getElementById('barChart'), {
+
+        type: 'bar',
+
+        data: {
+
+            labels: labels,
+
+            datasets: [{
+
+                label: 'Food Quantity / Count',
+
+                data: values,
+
+                backgroundColor: '#39FF14',
+
+                borderColor:'#00E5FF',
+
+                borderWidth:2
+
+            }]
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    labels:{
+                        color:'white'
+                    }
+
+                }
+
+            },
+
+            scales:{
+
+                x:{
+                    ticks:{
+                        color:'white'
+                    },
+                    grid:{
+                        color:'rgba(255,255,255,0.1)'
+                    }
+                },
+
+                y:{
+                    ticks:{
+                        color:'white'
+                    },
+                    grid:{
+                        color:'rgba(255,255,255,0.1)'
+                    }
+                }
+
+            }
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

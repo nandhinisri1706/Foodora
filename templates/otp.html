@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Verification - Foodoraa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            font-family:Arial, sans-serif;
+
+            background:#0f172a;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            height:100vh;
+
+            color:white;
+        }
+
+        /* OTP BOX */
+
+        .otp-box{
+
+            width:400px;
+
+            padding:35px;
+
+            border-radius:20px;
+
+            background:rgba(255,255,255,0.08);
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            backdrop-filter:blur(12px);
+
+            text-align:center;
+
+            box-shadow:
+            0 0 20px rgba(57,255,20,0.2);
+        }
+
+        .otp-box:hover{
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px rgba(57,255,20,0.4);
+        }
+
+        h1{
+
+            color:#39FF14;
+
+            margin-bottom:15px;
+
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+        }
+
+        p{
+            color:#d1d5db;
+            margin-bottom:20px;
+        }
+
+        .otp-display{
+
+            font-size:28px;
+
+            color:#00E5FF;
+
+            font-weight:bold;
+
+            margin-bottom:25px;
+
+            text-shadow:
+            0 0 10px #00E5FF;
+        }
+
+        /* INPUT */
+
+        input{
+
+            width:90%;
+
+            padding:14px;
+
+            border-radius:12px;
+
+            border:1px solid #39FF14;
+
+            background:#111827;
+
+            color:white;
+
+            outline:none;
+
+            font-size:16px;
+
+            text-align:center;
+
+            letter-spacing:3px;
+        }
+
+        input:focus{
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        /* BUTTON */
+
+        button{
+
+            width:95%;
+
+            padding:14px;
+
+            margin-top:20px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:linear-gradient(to right,#39FF14,#00ff95);
+
+            color:black;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        button:hover{
+
+            transform:scale(1.03);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #39FF14;
+        }
+
+        .phone{
+
+            font-size:45px;
+
+            margin-bottom:15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="otp-box">
+
+        <div class="phone">
+            📱
+        </div>
+
+        <h1>OTP Verification</h1>
+
+        <p>
+            Enter the OTP sent to your phone number
+        </p>
+
+        <p style="color:#9ca3af;">
+            OTP has been sent successfully 📩
+        </p>
+        <form action="/verify_otp" method="POST">
+
+            <input
+            type="text"
+            name="otp"
+            placeholder="Enter OTP"
+            required>
+
+            <br>
+
+            <button type="submit">
+                Verify OTP ✅
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

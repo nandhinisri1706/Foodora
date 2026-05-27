@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Delivery Partner - Foodoraa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            font-family:Arial;
+            background:#081229;
+            color:white;
+        }
+
+        h1{
+            text-align:center;
+            margin-top:30px;
+            color:#39FF14;
+            font-size:50px;
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14,
+            0 0 40px #39FF14;
+        }
+
+        .container{
+            width:90%;
+            margin:40px auto;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:30px;
+        }
+
+        .card{
+            width:320px;
+            padding:30px;
+            border-radius:25px;
+            background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.2);
+            backdrop-filter:blur(10px);
+            transition:0.3s;
+            box-shadow:
+            0 0 15px rgba(57,255,20,0.3);
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px rgba(57,255,20,0.5);
+        }
+
+        .food{
+            font-size:30px;
+            color:#39FF14;
+            margin-bottom:15px;
+            text-shadow:
+            0 0 10px #39FF14;
+        }
+
+        p{
+            font-size:17px;
+            margin:12px 0;
+            color:#d1d5db;
+        }
+
+        .earn{
+            color:#00E5FF;
+            font-size:22px;
+            font-weight:bold;
+            margin-top:15px;
+            text-shadow:
+            0 0 10px #00E5FF;
+        }
+
+        .accept-btn{
+            width:100%;
+            margin-top:25px;
+            padding:15px;
+            border:none;
+            border-radius:14px;
+            background:linear-gradient(to right,#39FF14,#00E5FF);
+            color:black;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        .accept-btn:hover{
+            transform:scale(1.03);
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #00E5FF;
+        }
+
+        .map-btn{
+            width:100%;
+            margin-top:12px;
+            padding:15px;
+            border:none;
+            border-radius:14px;
+            background:linear-gradient(to right,#FF6B6B,#FF8E53);
+            color:white;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+            box-shadow:
+            0 0 15px rgba(255,107,107,0.5);
+        }
+
+        .map-btn:hover{
+            transform:scale(1.03);
+            box-shadow:
+            0 0 20px #FF6B6B,
+            0 0 40px #FF8E53;
+        }
+
+        .vehicle{
+            color:#FFD700;
+            font-weight:bold;
+        }
+
+        .distance{
+            color:#00E5FF;
+            font-weight:bold;
+        }
+
+        .fee{
+            color:#39FF14;
+            font-size:22px;
+            font-weight:bold;
+            margin-top:15px;
+            text-shadow:
+            0 0 10px #39FF14;
+        }
+
+        .empty{
+            text-align:center;
+            margin-top:80px;
+            color:#9ca3af;
+            font-size:25px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Delivery Partners 🚚</h1>
+
+    {% if data %}
+
+    <div class="container">
+
+        {% for item in data %}
+
+        <div class="card">
+
+            <!-- FOOD -->
+
+            <div class="food">
+                🍱 {{ item[1] }}
+            </div>
+
+            <!-- QUANTITY -->
+
+            <p>
+                <strong>Quantity:</strong>
+                {{ item[2] }}
+            </p>
+
+            <!-- PEOPLE -->
+
+            <p>
+                <strong>Serves:</strong>
+                {{ item[3] }} People
+            </p>
+
+            <!-- LOCATION -->
+
+            <p>
+                <strong>Location:</strong>
+                {{ item[4] }}
+            </p>
+
+            <p>
+
+    <strong>Status:</strong>
+
+    {{ item[8] }}
+
+   </p>
+            <!-- VEHICLE -->
+
+            <p class="vehicle">
+                🚚 Vehicle:
+                {{ item[5] }}
+            </p>
+
+            <!-- DISTANCE -->
+
+            <p class="distance">
+                📍 Distance:
+                {{ item[6] }} KM
+            </p>
+
+            <!-- DELIVERY FEE -->
+
+            <div class="fee">
+                💰 Earn ₹{{ item[7] }}
+            </div>
+
+            <!-- ACCEPT BUTTON -->
+
+            <a href="/accept_delivery/{{ item[0] }}">
+
+                <button class="accept-btn">
+
+                    Accept Delivery ₹{{ item[7] }}
+
+                </button>
+
+            </a>
+            <a href="/picked/{{ item[0] }}">
+
+    <button class="map-btn">
+
+        📦 Order Picked
+
+    </button>
+
+</a>
+
+<a href="/ontheway/{{ item[0] }}">
+
+    <button class="map-btn">
+
+        🚚 On The Way
+
+    </button>
+
+</a>
+
+<a href="/delivered/{{ item[0] }}">
+
+    <button class="accept-btn">
+
+        ✅ Delivered
+
+    </button>
+
+</a>
+            <!-- MAP BUTTON -->
+
+            <a href="/accept/{{ item[0] }}">
+
+                <button class="map-btn">
+
+                    🗺️ Open Map
+
+                </button>
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+
+        No Pending Deliveries 🚫
+
+    </div>
+
+    {% endif %}
+
+</body>
+
+</html>

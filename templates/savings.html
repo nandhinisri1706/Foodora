@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Foodoraa Savings</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            font-family:Arial, sans-serif;
+            background:#0f172a;
+            color:white;
+        }
+
+        h1{
+            text-align:center;
+            margin-top:25px;
+            color:#39FF14;
+            font-size:45px;
+            text-shadow:
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+            padding-bottom:80px;
+        }
+
+        /* ================= WALLET CARD ================= */
+
+        .wallet-card{
+
+            max-width:700px;
+
+            margin:35px auto;
+
+            padding:35px;
+
+            border-radius:20px;
+
+            background:rgba(255,255,255,0.08);
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            backdrop-filter:blur(12px);
+
+            text-align:center;
+
+            box-shadow:
+            0 0 20px rgba(57,255,20,0.2);
+        }
+
+        .wallet-card:hover{
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px rgba(57,255,20,0.4);
+        }
+
+        .amount{
+
+            font-size:60px;
+
+            font-weight:bold;
+
+            color:#00E5FF;
+
+            margin-top:20px;
+
+            text-shadow:
+            0 0 15px #00E5FF;
+        }
+
+        .sub{
+            color:#d1d5db;
+            margin-top:12px;
+            font-size:18px;
+        }
+
+        /* ================= INPUT ================= */
+
+        .withdraw-box{
+            margin-top:30px;
+        }
+
+        input{
+
+            width:80%;
+
+            padding:14px;
+
+            border-radius:12px;
+
+            border:1px solid #39FF14;
+
+            background:#111827;
+
+            color:white;
+
+            outline:none;
+
+            font-size:15px;
+        }
+
+        input:focus{
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        /* ================= BUTTON ================= */
+
+        button{
+
+            width:85%;
+
+            padding:14px;
+
+            margin-top:18px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:linear-gradient(to right,#39FF14,#00ff95);
+
+            color:black;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        button:hover{
+
+            transform:scale(1.03);
+
+            box-shadow:
+            0 0 20px #39FF14,
+            0 0 40px #39FF14;
+        }
+
+        /* ================= HISTORY BUTTON ================= */
+
+        .history-btn{
+
+            margin-top:25px;
+
+            width:85%;
+
+            padding:15px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:linear-gradient(to right,#00E5FF,#39FF14);
+
+            color:black;
+
+            font-size:18px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .history-btn:hover{
+
+            transform:scale(1.03);
+
+            box-shadow:
+            0 0 20px #00E5FF,
+            0 0 40px #39FF14;
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal{
+
+            display:none;
+
+            position:fixed;
+
+            z-index:1000;
+
+            left:0;
+
+            top:0;
+
+            width:100%;
+
+            height:100%;
+
+            overflow:auto;
+
+            background:rgba(0,0,0,0.8);
+        }
+
+        .modal-content{
+
+            width:80%;
+
+            margin:50px auto;
+
+            padding:30px;
+
+            border-radius:20px;
+
+            background:#111827;
+
+            border:1px solid #39FF14;
+
+            box-shadow:
+            0 0 20px #39FF14;
+        }
+
+        .modal-content h2{
+
+            text-align:center;
+
+            color:#39FF14;
+
+            margin-bottom:25px;
+        }
+
+        .close{
+
+            float:right;
+
+            font-size:35px;
+
+            cursor:pointer;
+
+            color:#39FF14;
+        }
+
+        /* ================= TRANSACTION CARD ================= */
+
+        .transaction-card{
+
+            margin-top:20px;
+
+            padding:20px;
+
+            border-radius:15px;
+
+            background:rgba(255,255,255,0.08);
+
+            border-left:5px solid #39FF14;
+
+            transition:0.3s;
+        }
+
+        .transaction-card:hover{
+
+            transform:translateX(8px);
+
+            box-shadow:
+            0 0 15px #39FF14;
+        }
+
+        .transaction-card p{
+
+            margin:10px 0;
+
+            color:#d1d5db;
+
+            font-size:16px;
+        }
+
+        .money{
+
+            color:#00E5FF;
+
+            font-size:22px;
+
+            font-weight:bold;
+
+            text-shadow:
+            0 0 10px #00E5FF;
+        }
+
+        .datetime{
+
+            color:#39FF14;
+
+            font-weight:bold;
+        }
+
+        .empty{
+
+            text-align:center;
+
+            color:#9ca3af;
+
+            margin-top:20px;
+
+            font-size:18px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Savings & Earnings 💰</h1>
+
+    <div class="container">
+
+        <!-- WALLET -->
+
+        <div class="wallet-card">
+
+            <h2>Total Earnings</h2>
+
+            <div class="amount">
+
+                ₹ {{ total }}
+
+            </div>
+
+            <div class="sub">
+
+                Real-time delivery earnings 🚚
+
+            </div>
+
+            <!-- WITHDRAW -->
+
+            <div class="withdraw-box">
+
+                <input 
+                    type="text"
+                    placeholder="Enter Your UPI ID"
+                >
+
+                <br>
+
+                <button onclick="showMessage()">
+
+                    Withdraw Money 💸
+
+                </button>
+
+                <!-- HISTORY BUTTON -->
+
+                <button 
+                    class="history-btn"
+                    onclick="openHistory()"
+                >
+
+                    📜 Transaction History
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MODAL -->
+
+    <div id="historyModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close" onclick="closeHistory()">
+
+                &times;
+
+            </span>
+
+            <h2>Transaction History 💳</h2>
+
+            {% if data %}
+
+                {% for item in data %}
+
+                <div class="transaction-card">
+
+                    <p class="money">
+
+                        💰 Earned ₹{{ item[1] }}
+
+                    </p>
+
+                    <p>
+
+                        🚚 Vehicle:
+                        {{ item[3] }}
+
+                    </p>
+
+                    <p>
+
+                        📍 Distance:
+                        {{ item[4] }} KM
+
+                    </p>
+
+                    <p>
+
+                        📄 {{ item[2] }}
+
+                    </p>
+
+                    <p class="datetime">
+
+                        🕒 {{ item[5] }}
+
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+
+                    No Transactions Yet 🚫
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function showMessage(){
+
+            alert("Withdrawal Request Submitted Successfully 💚");
+
+        }
+
+        function openHistory(){
+
+            document.getElementById("historyModal").style.display = "block";
+
+        }
+
+        function closeHistory(){
+
+            document.getElementById("historyModal").style.display = "none";
+
+        }
+
+        window.onclick = function(event){
+
+            let modal = document.getElementById("historyModal");
+
+            if(event.target == modal){
+
+                modal.style.display = "none";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
