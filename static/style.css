@@ -1,0 +1,517 @@
+/* ================= BODY ================= */
+
+body{
+
+    margin:0;
+    padding:0;
+
+    font-family:Arial, sans-serif;
+
+    background:linear-gradient(
+        180deg,
+        #020617,
+        #081229,
+        #0f172a
+    );
+
+    background-size:400% 400%;
+
+    animation:bgMove 10s ease infinite;
+
+    color:white;
+
+    overflow-x:hidden;
+}
+
+/* ================= BACKGROUND ANIMATION ================= */
+
+@keyframes bgMove{
+
+    0%{
+        background-position:0% 0%;
+    }
+
+    50%{
+        background-position:0% 100%;
+    }
+
+    100%{
+        background-position:0% 0%;
+    }
+}
+
+/* ================= TOP BUTTONS ================= */
+
+.top-buttons{
+
+    width:90%;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    padding-top:20px;
+}
+
+/* ================= AUTH BUTTON ================= */
+
+.auth-btn{
+
+    padding:12px 24px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(to right,#39FF14,#00E5FF);
+
+    color:black;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 0 15px #39FF14;
+}
+
+.auth-btn:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+    0 0 20px #39FF14,
+    0 0 40px #00E5FF;
+}
+
+/* ================= LOGOUT BUTTON ================= */
+
+.logout-btn{
+
+    background:linear-gradient(to right,#ff4d4d,#ff0000);
+
+    color:white;
+
+    box-shadow:
+    0 0 15px red;
+}
+
+.logout-btn:hover{
+
+    box-shadow:
+    0 0 20px red,
+    0 0 40px red;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero{
+
+    text-align:center;
+
+    margin-top:40px;
+}
+
+.hero h1{
+
+    font-size:65px;
+
+    color:#39FF14;
+
+    margin-bottom:10px;
+
+    text-shadow:
+    0 0 10px #39FF14,
+    0 0 20px #39FF14,
+    0 0 40px #39FF14;
+}
+
+.hero p{
+
+    font-size:22px;
+
+    color:#d1d5db;
+}
+
+/* ================= MAIN CONTAINER ================= */
+
+.main-container{
+
+    width:90%;
+
+    margin:40px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(2, 320px);
+
+    justify-content:center;
+
+    gap:35px;
+}
+/* ================= CARD ================= */
+
+.card{
+
+    width:300px;
+
+    padding:35px 25px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    backdrop-filter:blur(12px);
+
+    text-align:center;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 0 15px rgba(57,255,20,0.2);
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+    0 0 20px #39FF14,
+    0 0 40px rgba(57,255,20,0.5);
+}
+
+/* ================= ADMIN CARD ================= */
+
+.admin-card{
+
+    grid-column:1 / span 2;
+
+    justify-self:center;
+
+    width:320px;
+
+    margin-top:10px;
+}
+/* ================= EMOJI ================= */
+
+.emoji{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+}
+
+/* ================= CARD TITLE ================= */
+
+.card h2{
+
+    color:#39FF14;
+
+    font-size:36px;
+
+    margin-bottom:15px;
+
+    text-shadow:
+    0 0 10px #39FF14;
+}
+
+/* ================= CARD TEXT ================= */
+
+.card p{
+
+    color:#d1d5db;
+
+    font-size:17px;
+
+    line-height:1.6;
+
+    margin-bottom:25px;
+}
+
+/* ================= CARD BUTTON ================= */
+
+.card button{
+
+    padding:14px 30px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(to right,#39FF14,#00E5FF);
+
+    color:black;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 0 15px #39FF14;
+}
+
+.card button:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+    0 0 20px #39FF14,
+    0 0 40px #00E5FF;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+    width:100%;
+
+    position:fixed;
+
+    bottom:0;
+
+    background:#111827;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    padding:18px 0;
+
+    border-top:2px solid #39FF14;
+
+    box-shadow:
+    0 0 15px #39FF14;
+}
+
+/* ================= FOOTER LINKS ================= */
+
+.footer a{
+
+    color:#39FF14;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.footer a:hover{
+
+    text-shadow:
+    0 0 10px #39FF14,
+    0 0 20px #39FF14;
+}
+
+/* ================= VEHICLE SELECT ================= */
+
+select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#111827;
+
+    color:white;
+
+    font-size:15px;
+
+    outline:none;
+
+    border:1px solid #39FF14;
+
+    box-sizing:border-box;
+}
+
+/* ================= DELIVERY FEE ================= */
+
+#deliveryFee{
+
+    margin-top:15px;
+
+    color:#39FF14;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    font-size:20px;
+
+    text-shadow:
+    0 0 10px #39FF14;
+}
+
+/* ================= HISTORY BUTTON ================= */
+
+.history-btn{
+
+    padding:15px 25px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(to right,#39FF14,#00E5FF);
+
+    color:black;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:20px;
+
+    transition:0.3s;
+}
+
+.history-btn:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+    0 0 20px #39FF14,
+    0 0 40px #00E5FF;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    z-index:1000;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,0.8);
+}
+
+.modal-content{
+
+    width:80%;
+
+    max-height:80vh;
+
+    overflow-y:auto;
+
+    margin:50px auto;
+
+    background:#111827;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    color:white;
+
+    border:1px solid #39FF14;
+
+    box-shadow:
+    0 0 20px #39FF14;
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.close{
+
+    float:right;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+    color:#39FF14;
+}
+
+/* ================= TRANSACTION CARD ================= */
+
+.transaction-card{
+
+    background:rgba(255,255,255,0.08);
+
+    padding:20px;
+
+    border-radius:15px;
+
+    margin-top:20px;
+
+    border:1px solid #39FF14;
+
+    transition:0.3s;
+}
+
+.transaction-card:hover{
+
+    transform:translateX(8px);
+
+    box-shadow:
+    0 0 15px #39FF14;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .hero h1{
+
+        font-size:40px;
+    }
+
+    .hero p{
+
+        font-size:18px;
+    }
+
+    .card{
+
+        width:90%;
+    }
+
+    .top-buttons{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+    }
+
+    .footer{
+
+        font-size:14px;
+    }
+
+    .admin-card{
+
+        width:90%;
+    }
+}
